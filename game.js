@@ -32,10 +32,17 @@ let gameOver = false;
 
 // Move the paddle with the mouse
 canvas.addEventListener("mousemove", movePaddle);
+canvas.addEventListener("touchmove", movePaddleTouch);
 
 function movePaddle(event) {
     let rect = canvas.getBoundingClientRect();
     paddle.y = event.clientY - rect.top - paddleHeight / 2;
+}
+
+function movePaddleTouch(event) {
+    event.preventDefault();
+    let rect = canvas.getBoundingClientRect();
+    paddle.y = event.touches[0].clientY - rect.top - paddleHeight / 2;
 }
 
 // Draw the paddle
